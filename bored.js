@@ -342,21 +342,26 @@ var boredItems =
 };
 
 function getBoredItem() {
+    if(document.getElementById("actionDiv")) {
+        document.getElementById("actionDiv").remove();
+    }
+    
     var totalBoredItems = Object.keys(boredItems);
     var randomBoredItemHeader = totalBoredItems[Math.floor(Math.random() * totalBoredItems.length)];
     var doThisThing = boredItems[randomBoredItemHeader];
     
     var mainDiv = document.getElementById('mainDiv');
     var div = document.createElement("div");
-    var divColumn = document.createElement("div");
+    var divAction = document.createElement("div");
+    divAction.id = "actionDiv"
 
     var heading = document.createElement("p");
     heading.innerHTML = doThisThing.heading;
-    divColumn.appendChild(heading);
+    divAction.appendChild(heading);
     var action = document.createElement("span");
     action.innerHTML = doThisThing.action; 
-    divColumn.appendChild(action);
-    div.appendChild(divColumn);
+    divAction.appendChild(action);
+    div.appendChild(divAction);
     mainDiv.appendChild(div);
 }
 
